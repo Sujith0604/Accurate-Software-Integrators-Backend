@@ -34,14 +34,12 @@ app.use("/uploads", express.static(__dirname + "/uploads"));
 //   });
 
 mongoose
-  .connect(
-    "mongodb+srv://accuratesoftwareintegrators:NpJsezXiylwwiRva@cluster0.0ke3f.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
-  )
+  .connect(process.env.MONGODB_CONNECTION)
   .then(() => {
     console.log("Connected to MongoDB");
   })
   .catch(() => {
-    console.log("Connection failed");
+    console.log("Connection to MongoDB  failed");
   });
 
 app.get("/", (req, res) => {
@@ -54,15 +52,6 @@ app.use("/testimony", Testimonyrouter);
 app.use("/tech", Techrouter);
 app.use("/whatwedo", WhatWeDoRouter);
 app.use("/developer", DeveloperRouter);
-
-// app.get("./netlify/functions/index");
-
-// const handler = serverlesshttp(app);
-
-// exports.handler = async (event, context) => {
-//   const result = await handler(event, context);
-//   return result; // for serverless framework
-// }; // for serverless framework
 
 const PORT = process.env.PORT || 3000;
 
