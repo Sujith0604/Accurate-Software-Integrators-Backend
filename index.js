@@ -44,6 +44,10 @@ mongoose
     console.log("Connection failed");
   });
 
+app.get("/", (req, res) => {
+  res.send("Hello from the server!");
+});
+
 app.use("/page", Pagerouter);
 app.use("/project", Projectrouter);
 app.use("/testimony", Testimonyrouter);
