@@ -9,6 +9,9 @@ import WhatWeDoRouter from "./routes/whatWeDoRouter.js";
 import DeveloperRouter from "./routes/developerRouter.js";
 import bodyParser from "body-parser";
 import path from "path";
+import dotenv from "dotenv";
+
+dotenv.config();
 
 const __dirname = path.resolve();
 const app = express();
@@ -48,6 +51,17 @@ app.use("/tech", Techrouter);
 app.use("/whatwedo", WhatWeDoRouter);
 app.use("/developer", DeveloperRouter);
 
-app.listen(3000, () => {
+// app.get("./netlify/functions/index");
+
+// const handler = serverlesshttp(app);
+
+// exports.handler = async (event, context) => {
+//   const result = await handler(event, context);
+//   return result; // for serverless framework
+// }; // for serverless framework
+
+const PORT = process.env.PORT || 3000;
+
+app.listen(PORT, () => {
   console.log("Server is running on port 3000");
 });
